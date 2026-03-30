@@ -26,8 +26,8 @@ public class AgentCntroller : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(transform.localPosition);
-        sensor.AddObservation(target.localPosition);
+        Vector3 relativePosition = target.localPosition - transform.localPosition;
+        sensor.AddObservation(relativePosition);
     }
     public override void OnActionReceived(ActionBuffers actions)
     {
@@ -37,6 +37,9 @@ public class AgentCntroller : Agent
         transform.localPosition += new Vector3(moveX, 0f) * moveSpeed * Time.deltaTime;
 
         AddReward(-0.001f); //penalty per step to encourage faster solutions
+
+        float distance = Vector3.Distance(transform.localPosition, target.localPosition);
+        AddReward(-distance * 0.001f); //small penalty based on distance to encourage getting closer to the target
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -49,12 +52,12 @@ public class AgentCntroller : Agent
     {
         if (other.gameObject.tag == "Target")
         {
-            AddReward(3f);
+            AddReward(5f);
             EndEpisode();
         }
         else if (other.CompareTag("Wall"))
         {
-            SetReward(-3f);
+            SetReward(-2f);
             EndEpisode();
         }
     }
