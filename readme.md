@@ -51,7 +51,7 @@ It sets up a foundational environment where an agent learns to navigate toward a
 MLvenv\Scripts\activate
 
 # Start training
-python -m mlagents.trainers.learn config.yaml --run-id=DeepRlRun1
+mlagents-learn --run-id=DeepRlRun1
 ```
 
 Then press **Play ▶️ in Unity** to begin training.
