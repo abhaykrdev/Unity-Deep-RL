@@ -134,10 +134,3 @@ It will be continuously updated with improvements and new features.
 
 This repository will evolve as the project develops.
 New features, improvements, and experiments will be pushed regularly.
-
----
-
-## 📄 License
-
-This project is intended for learning and experimentation.
->>>>>>> f4ed831d7cf404bc294ee1a19b84353213931449
